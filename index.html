@@ -18,38 +18,67 @@
 
         <div class="col-4">
           <form action="">
-            <div class="form-group mr-1">
+            <div class="form-group">
               <label>Nome</label>
               <input
                 type="text"
                 class="form-control"
                 placeholder="Nome Completo..."
-                v-model="contact.name"
+                v-model="employee.name"
               />
             </div>
 
-            <div class="form-group mr-1">
+            <div class="form-group">
               <label>E-mail</label>
               <input
                 type="email"
                 class="form-control"
                 placeholder="Seu melhor email..."
-                v-model="contact.email"
+                v-model="employee.email"
               />
             </div>
 
-            <div class="form-group mr-1">
-              <label>Contato</label>
-              <input
-                type="phone"
-                class="form-control"
-                placeholder="Telefone/Celular"
-                v-model="contact.phone"
-              />
+            <div class="form-group">
+              <label>Setor</label>
+              <select class="form-control" v-model="employee.department"/>
+                <option value="" selected>Selecione o item</option>
+                <option value="Sales">Sales</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Ads">Ads</option>
+                <option value="Social Media">Social Media</option>
+                <option value="Branding & Marketing">Branding & Marketing</option>
+                <option value="Architectural Genie">Architectural Genie</option>
+                <option value="Branding">Branding</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Cargo</label>
+              <select class="form-control" v-model="employee.occupation">
+                <option value="" selected>Selecione o item</option>
+                <option value="Account executive">Account executive</option>
+                <option value="Brand Manager">Brand Manager</option>
+                <option value="Copywriting">Copywriting</option>
+                <option value="Content Manager">Content Manager</option>
+                <option value="Specialist">Specialist</option>
+                <option value="Computer Network Architect">Computer Network Architect</option>
+                <option value="Trainee">Trainee</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Função</label>
+              <select class="form-control" v-model="employee.role">
+                <option value="" selected>Selecione o item</option>
+                <option value="Account executive">Admin</option>
+              </select>
+            </div>
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1" v-model="employee.active" true-value="1" false-value="0">
+              <label class="custom-control-label" for="customSwitch1"></label>
             </div>
 
-            <div class="form-group ml-1">
-              <button class="btn btn-lg btn-rounded btn-success" v-on:click.prevent="saveContact(contact)">
+
+            <div class="form-group">
+              <button class="btn btn-lg btn-rounded btn-primary" v-on:click.prevent="saveemployee(employee)">
                 Criar Contato
               </button>
             </div>
@@ -57,16 +86,16 @@
         </div>
 
         <div class="col-8 border-left">
-          <div class="contact">
-            <div class="col-12 mb-2" v-for="contact in contacts">
+          <div class="employee">
+            <div class="col-12 mb-2" v-for="employee in employees">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">{{contact.name}}</h5>
+                  <h5 class="card-title">{{employee.name}}</h5>
 
-                  <p class="card-text">{{contact.email}}, {{contact.phone}}</p>
+                  <p class="card-text">{{employee.email}}, {{employee.phone}}</p>
 
                   <a href="#" class="btn btn-sm btn-primary">EDITAR</a>
-                  <a href="#" class="btn btn-sm btn-danger" v-on:click.prevent="removeContact(contact.id)">DELETAR</a>
+                  <a href="#" class="btn btn-sm btn-danger" v-on:click.prevent="removeemployee(employee.id)">DELETAR</a>
                 </div>
               </div>
             </div>

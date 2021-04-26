@@ -1,48 +1,52 @@
 let app = new Vue({
   el: "#app",
   data: {
-    name: 'Contatos App',
-    contact: {
-      id:'',
-      name: '',
-      email: '',
-      phone: ''
+    name: 'Employee App',
+    employee: {
+      "name": '',
+      "email":'',
+      "department":'',
+      "occupation":'',
+      "profile_image":'',
+      "cpf":'',
+      "role":'',
+      "active":''
     }
   },
   created() {
-    this.contacts = JSON.parse(localStorage.getItem('contactsApp'));
+    this.employees = JSON.parse(localStorage.getItem('employeesApp'));
   },
   methods: {
-    saveContact(contact) {
-      let contacts = localStorage.getItem('contactsApp');
+    saveemployee(employee) {
+      let employees = localStorage.getItem('employeesApp');
 
-      contact.id = new Date().getTime();
+      employee.id = new Date().getTime();
 
-      if(contacts) {
-        contacts = JSON.parse(contacts);
-        contacts.push(contact);
+      if(employees) {
+        employees = JSON.parse(employees);
+        employees.push(employee);
       } else {
-        contacts = [contact];
+        employees = [employee];
       }
       
-      this.contacts = contacts;
+      this.employees = employees;
 
-      localStorage.setItem('contactsApp', JSON.stringify(contacts))
+      localStorage.setItem('employeesApp', JSON.stringify(employees))
     },
-    removeContact(contactId) {
-      let contacts = localStorage.getItem('contactsApp');
+    removeemployee(employeeId) {
+      let employees = localStorage.getItem('employeesApp');
 
-      if(!contacts) return;
+      if(!employees) return;
 
-      contacts = JSON.parse(contacts);
+      employees = JSON.parse(employees);
 
-      contacts = contacts.filter((contact) => {
-        return contact.id != contactId;
+      employees = employees.filter((employee) => {
+        return employee.id != employeeId;
       });
 
-      this.contacts = contacts;
+      this.employees = employees;
 
-      localStorage.setItem('contactsApp', JSON.stringify(contacts));
+      localStorage.setItem('employeesApp', JSON.stringify(employees));
     }
   }
 });
