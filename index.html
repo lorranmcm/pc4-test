@@ -107,28 +107,39 @@
         </div>
         <div class="col-8 border-left">
           <div class="employee">
-            <div class="col-12 mb-2" v-for="employee in employees">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">{{employee.name}}</h5>
+            <div class="card-header row">
+              <p class="card">NOME</p>
+              <p class="card">CARGO</p>
+              <p class="card">STATUS</p>
+              <p class="card">FUNÇÃO</p>
+            </div>
 
-                  <p class="card-text">
-                    {{employee.email}}, {{employee.phone}}
-                  </p>
-
-                  <a
-                    href="#"
-                    class="btn btn-sm btn-primary"
-                    v-on:click.prevent="editEmployee(employee)"
-                    >EDITAR</a
-                  >
-                  <a
-                    href="#"
-                    class="btn btn-sm btn-danger"
-                    v-on:click.prevent="removeEmployee(employee.id)"
-                    >DELETAR</a
-                  >
+            <div v-for="employee in employees" class="card">
+              <div class="card-body row">
+                <div>
+                  <img v-bind:src="employee.profile_image" alt="photo" />
                 </div>
+                <div>
+                  <p class="card-text">{{employee.name}}</p>
+                  <p class="card-text">{{employee.email}},</p>
+                </div>
+                <div>
+                  <p class="card-text">{{employee.department}}</p>
+                  <p class="card-text">{{employee.occupation}},</p>
+                </div>
+                <div>
+                  <p class="card-text">{{employee.active}}</p>
+                </div>
+                <div>
+                  <p class="card-text">{{employee.role}}</p>
+                </div>
+                <a
+                  class="text-blue"
+                  href="#"
+                  class="btn btn-sm btn-primary"
+                  v-on:click.prevent="editEmployee(employee)"
+                  >EDITAR</a
+                >
               </div>
             </div>
           </div>

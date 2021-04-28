@@ -1,9 +1,11 @@
 let app = new Vue({
   el: "#app",
   data: {
+    initial: [],
     employees: [],
     name: "Employee App",
     employee: {
+      id: "",
       name: "",
       email: "",
       department: "",
@@ -15,8 +17,8 @@ let app = new Vue({
     },
     isEdit: false,
   },
-  beforeCreate() {
-    this.employees = fetch(
+  created() {
+    this.initial = fetch(
       "https://private-5b8666-testefrontendpc4.apiary-mock.com/users",
       {
         method: "GET",
@@ -32,14 +34,12 @@ let app = new Vue({
         }
       })
       .then((response) => {
-        this.employees = response[0].users;
-        // console.log(employees);
+        this.initial = response[0].users;
+        localStorage.setItem("employeesApp", JSON.stringify(this.initial));
       })
       .catch((err) => {
         console.log(err);
       });
-  },
-  created() {
     this.employees = JSON.parse(localStorage.getItem("employeesApp"));
   },
   methods: {
